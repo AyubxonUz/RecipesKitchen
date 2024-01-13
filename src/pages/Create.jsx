@@ -211,7 +211,7 @@ function Create() {
               )}
               {loading && (
                 <button disabled className="btn btn-primary w-1/3">
-                  CREATE <Loader />
+                  <span className="loading loading-dots loading-md"></span>
                 </button>
               )}
               <button
