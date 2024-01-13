@@ -22,14 +22,14 @@ function Recipe() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="max-container">
+      <main className="max-container flex-1">
         {!recipe && (
           <div className="flex justify-center items-center h-full mt-[300px]">
             <span className="loading loading-dots loading-lg"></span>
           </div>
         )}
         {recipe && (
-          <div className="mt-[30px] p-5 bg-slate-300 rounded-[14px] shadow-2xl max-container h-auto p-[15px">
+          <div className="mt-[30px] p-5 bg-slate-400 rounded-[14px] shadow-2xl max-container h-auto p-[15px">
             <img
               className="w-[475px] h-[470px] rounded-[12px] max-lg:w-[300px] max-lg:h-64 hidden max-lg:block max-lg:mx-auto max-[1023px]:ml-6 max-[639px]:ml-0"
               src={recipe.imagesUrl[0]}
@@ -81,11 +81,11 @@ function Recipe() {
           </div>
         )}
         {recipe && (
-          <div className="flex justify-center">
+          <div className="flex justify-center h-full mb-[100%]">
             {!loading && (
               <button
                 onClick={() => deleteRecipe("recipes", id)}
-                className="btn btn-error w-3/4 mt-4"
+                className="btn btn-error w-3/4 mt-4 "
               >
                 Delete Item
               </button>
