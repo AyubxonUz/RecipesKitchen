@@ -198,7 +198,7 @@ function Create() {
             <p className="font-bold text-[20px]">Method:</p>
             <textarea
               ref={method}
-              required
+              required 
               name="method"
               className="textarea textarea-bordered w-full"
               placeholder="Bio"
