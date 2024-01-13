@@ -89,6 +89,8 @@ function Create() {
       setImagesUrl((prev) => {
         return [...prev, newImage]
       })
+    } else {
+      toast.error("Only in jpeg, jpg, gif, png, svg format")
     }
     images.current.value = ""
   }
@@ -96,88 +98,93 @@ function Create() {
   return (
     <>
       <Navbar />
-      <main>
-        <div className="grid justify-center mt-9">
-          <h1 className="text-[40px] font-semibold">Create New Recipe</h1>
-          <form onSubmit={handleForm} className="justify-center grid mt-5">
-            <label>
-              <p className="font-bold text-[20px]">Title:</p>
+      <main className="max-container">
+        <div className="mx-auto max-w-xl py-10">
+          <h2 className="mb-5 text-center text-2xl font-semibold capitalize">
+            Add new recipe
+          </h2>
+          <form onSubmit={handleForm} className="gap-3">
+            <label className="items-start">
+              <span className="mb-1 font-semibold">Title:</span>
               <input
+                className="input input-bordered input-md w-full"
                 ref={title}
                 required
                 name="title"
                 type="text"
                 placeholder="Type here"
-                className="input input-bordered w-[400px] "
               />
-              <br />
-              <br />
-              <p className="font-bold text-[20px]">Ingredients:</p>
-              <input
-                ref={ingredients}
-                name="ingredients"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-[330px] "
-              />
-              <button
-                type="button"
-                onClick={handleIng}
-                className="btn btn-primary ml-3"
-              >
-                Add
-              </button>
-              <p className="max-w-[400px]">
+            </label>
+            <br />
+            <br />
+            <label className="items-start">
+              <span className="mb-1 font-semibold">Ingredients:</span>
+              <div className="flex">
+                <input
+                  className="input input-bordered input-md w-full"
+                  ref={ingredients}
+                  name="title"
+                  placeholder="Type here"
+                />
+                <button
+                  type="button"
+                  onClick={handleIng}
+                  className="btn btn-primary ml-2"
+                >
+                  Add
+                </button>
+              </div>
+              <p className="text-[16px]">
                 Ingredients:{" "}
                 {ingredientss.length > 0 &&
                   ingredientss.map((ing, index, ingArray) => {
                     return (
-                      <span
-                        key={ing}
-                        className="ml-[4px] font-bold"
-                        style={{display: "inline-block"}}
-                        key={ing}
-                      >
+                      <span key={ing} className="text-[14px]">
                         {ing}
-                        {index === ingArray.length - 1 ? "." : `,`}
+                        {index === ingArray.length - 1 ? "." : `, `}
                       </span>
                     )
                   })}
               </p>
+            </label>
+            <label className="items-start">
               <br />
-              <p className="font-bold text-[20px]">Cooking time:</p>
+              <span className="mb-1 font-semibold">Cooking Time:</span>
               <input
+                className="input input-bordered input-md w-full"
                 ref={cookingTime}
                 required
                 name="cookingTime"
                 type="number"
                 placeholder="Type here"
-                className="input input-bordered w-[400px] "
               />
+            </label>
+            <label className="items-start">
               <br />
-              <br />
-              <p className="font-bold text-[20px]">Images URL:</p>
-              <input
-                ref={images}
-                name="images"
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-[330px] "
-              />
-              <button
-                onClick={handleImage}
-                type="button"
-                className="btn btn-primary ml-3"
-              >
-                Add
-              </button>
+              <span className="mb-1 font-semibold">ImageURL:</span>
+              <div className="flex">
+                <input
+                  className="input input-bordered input-md w-full"
+                  ref={images}
+                  name="images"
+                  type="text"
+                  placeholder="Type here"
+                />
+                <button
+                  onClick={handleImage}
+                  type="button"
+                  className="btn btn-primary ml-3"
+                >
+                  Add
+                </button>
+              </div>
               <p>Images:</p>
               <div className="grid gap-4 grid-cols-4">
                 {imagesUrl.length > 0 &&
                   imagesUrl.map((image) => {
                     return (
                       <img
-                        className="w-[90px] h-[70px]"
+                        className="w-full h-full"
                         key={image}
                         src={image}
                         alt=""
@@ -185,89 +192,91 @@ function Create() {
                     )
                   })}
               </div>
-              <br />
-              <p className="font-bold text-[20px]">Method:</p>
-              <textarea
-                ref={method}
-                required
-                name="method"
-                className="textarea textarea-bordered w-[400px] "
-                placeholder="Bio"
-              ></textarea>
-              <div className="justify-between flex mt-4">
-                {!loading && (
-                  <button className="btn btn-primary w-36">CREATE</button>
-                )}
-                {loading && (
-                  <button disabled className="btn btn-primary w-36">
-                    CREATE <Loader />
-                  </button>
-                )}
+            </label>
+            <br />
+            <p className="font-bold text-[20px]">Method:</p>
+            <textarea
+              ref={method}
+              required
+              name="method"
+              className="textarea textarea-bordered w-full"
+              placeholder="Bio"
+            ></textarea>
 
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={handleClick}
-                >
-                  OPEN MODAL
+            <div className="justify-between flex mt-2">
+              {!loading && (
+                <button type="submit" className="btn btn-primary w-1/3">
+                  CREATE
                 </button>
-                <dialog id="my_modal_4" className="modal">
-                  <div className="w-11/12 max-w-5xl">
-                    <div className="p-5 bg-[#fff] rounded-[14px] shadow-2xl max-container h-auto p-[15px">
-                      <img
-                        className="w-[475px] h-[470px] rounded-[12px] max-lg:w-[300px] max-lg:h-64 hidden max-lg:block max-lg:mx-auto max-[1023px]:ml-6 max-[639px]:ml-0"
-                        src={imagesUrl[0]}
-                        alt=""
-                      />
-                      <div className="flex max-lg:justify-center max-lg:block">
-                        <img
-                          className="w-[475px] h-[470px] bg-slate-600 rounded-[12px] max-lg:hidden"
-                          src={imagesUrl[0]}
-                          alt=""
-                        />
-                        <div className="block">
-                          <h1 className="text-[50px] sm:ml-6 font-bold max-sm:text-[25px]">
-                            {title.current?.value}
-                          </h1>
+              )}
+              {loading && (
+                <button disabled className="btn btn-primary w-1/3">
+                  CREATE <Loader />
+                </button>
+              )}
+              <button
+                type="button"
+                className="btn btn-primary w-1/3"
+                onClick={handleClick}
+              >
+                PREVIEW
+              </button>
+            </div>
+            <dialog id="my_modal_4" className="modal">
+              <div className="w-11/12 max-w-5xl">
+                <div className="p-5 bg-[#fff] rounded-[14px] shadow-2xl max-container h-auto p-[15px">
+                  <img
+                    className="w-[475px] h-[470px] rounded-[12px] max-lg:w-[300px] max-lg:h-64 hidden max-lg:block max-lg:mx-auto max-[1023px]:ml-6 max-[639px]:ml-0"
+                    src={imagesUrl[0]}
+                    alt=""
+                  />
+                  <div className="flex max-lg:justify-center max-lg:block">
+                    <img
+                      className="w-[475px] h-[470px] bg-slate-600 rounded-[12px] max-lg:hidden"
+                      src={imagesUrl[0]}
+                      alt=""
+                    />
+                    <div className="block">
+                      <h1 className="text-[50px] sm:ml-6 font-bold max-sm:text-[25px]">
+                        {title.current?.value}
+                      </h1>
 
-                          <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px]">
-                            Ingredients:{" "}
-                            {ingredientss.map((ing, index, ingArray) => {
-                              return (
-                                <span
-                                  key={ing}
-                                  className="font-sans text-slate-500 "
-                                >
-                                  {ing}
-                                  {index === ingArray.length - 1 ? "." : ", "}
-                                </span>
-                              )
-                            })}
-                          </p>
-                          <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
-                            Method:
-                            <span className="font-normal text-slate-700 text-sm flex">
-                              {method.current?.value}
+                      <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px]">
+                        Ingredients:{" "}
+                        {ingredientss.map((ing, index, ingArray) => {
+                          return (
+                            <span
+                              key={ing}
+                              className="font-sans text-slate-500 "
+                            >
+                              {ing}
+                              {index === ingArray.length - 1 ? "." : ", "}
                             </span>
-                          </p>
-                          <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
-                            Cooking Time:{" "}
-                            <span className="text-slate-600 text-[14px] font-normal">
-                              {cookingTime.current?.value + " minutes"}
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                      <div className="modal-action">
-                        <form method="dialog">
-                          <button className="btn">ClOSE</button>
-                        </form>
-                      </div>
+                          )
+                        })}
+                      </p>
+                      <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
+                        Method:
+                        <span className="font-normal text-slate-700 text-sm flex">
+                          {method.current?.value}
+                        </span>
+                      </p>
+                      <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
+                        Cooking Time:{" "}
+                        <span className="text-slate-600 text-[14px] font-normal">
+                          {cookingTime.current?.value + " minutes"}
+                        </span>
+                      </p>
                     </div>
                   </div>
-                </dialog>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      <button className="btn">ClOSE</button>
+                    </form>
+                  </div>
+                </div>
               </div>
-            </label>
+            </dialog>
           </form>
         </div>
       </main>

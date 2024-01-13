@@ -18,14 +18,14 @@ function Navbar() {
 
   const changeMode = () => {
     const data = document.documentElement.getAttribute("data-theme")
-    if (data === "dark") {
-      document.documentElement.setAttribute("data-theme", "light")
+    if (data === "light") {
+      document.documentElement.setAttribute("data-theme", "dark")
       localStorage.setItem(
         "theme",
         document.documentElement.getAttribute("data-theme")
       )
     } else {
-      document.documentElement.setAttribute("data-theme", "dark")
+      document.documentElement.setAttribute("data-theme", "light")
       localStorage.setItem(
         "theme",
         document.documentElement.getAttribute("data-theme")
