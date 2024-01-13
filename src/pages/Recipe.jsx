@@ -92,6 +92,7 @@ function Recipe() {
             )}
             {loading && (
               <button
+              disabled
                 onClick={() => deleteRecipe("recipes", id)}
                 className="btn btn-error w-3/4 mt-4"
               >
