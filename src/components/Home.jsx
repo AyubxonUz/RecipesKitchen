@@ -11,7 +11,7 @@ function Home() {
       {recipes ? (
         <RecipesList recipes={recipes} />
       ) : (
-        <div className="flex justify-center h-full items-center">
+        <div className="justify-center h-full w-full flex items-center mt-24">
           <span className="loading loading-dots loading-lg"></span>
         </div>
       )}

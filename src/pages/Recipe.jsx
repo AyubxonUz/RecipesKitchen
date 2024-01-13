@@ -4,6 +4,7 @@ import {toast} from "react-toastify"
 import {useEffect, useState} from "react"
 import Navbar from "../components/Navbar"
 import {useDeletedRecipe} from "../hooks/useDeletedRecipe"
+import Footer from "../components/Footer"
 
 function Recipe() {
   const {deleteRecipe, loading} = useDeletedRecipe()
@@ -19,7 +20,7 @@ function Recipe() {
   }, [])
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="max-container">
         {!recipe && (
@@ -28,7 +29,7 @@ function Recipe() {
           </div>
         )}
         {recipe && (
-          <div className="mt-[30px] p-5 bg-[#fff] rounded-[14px] shadow-2xl max-container h-auto p-[15px">
+          <div className="mt-[30px] p-5 bg-slate-300 rounded-[14px] shadow-2xl max-container h-auto p-[15px">
             <img
               className="w-[475px] h-[470px] rounded-[12px] max-lg:w-[300px] max-lg:h-64 hidden max-lg:block max-lg:mx-auto max-[1023px]:ml-6 max-[639px]:ml-0"
               src={recipe.imagesUrl[0]}
@@ -41,17 +42,17 @@ function Recipe() {
                 alt=""
               />
               <div className="block">
-                <h1 className="text-[50px] sm:ml-6 font-bold max-sm:text-[25px]">
+                <h1 className="text-[50px] text-black sm:ml-6 font-bold max-sm:text-[25px]">
                   {recipe.title}
                 </h1>
 
-                <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px]">
+                <p className="font-bold text-black text-[18px] sm:ml-6 mt-6 sm:text-[15px]">
                   Ingredients:{" "}
                   {recipe.ingredientss.map((ing, index, ingArray) => {
                     return (
                       <span
                         key={ing}
-                        className="font-normal text-slate-700 text-sm"
+                        className="font-normal  text-sm text-black"
                       >
                         {ing}
                         {index === ingArray.length - 1 ? "." : ", "}
@@ -59,13 +60,13 @@ function Recipe() {
                     )
                   })}
                 </p>
-                <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
+                <p className="text-black font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
                   Method:{" "}
                   <span className="font-normal text-slate-700 text-sm">
                     {recipe.method}
                   </span>
                 </p>
-                <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
+                <p className="text-black font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
                   Cooking Time:{" "}
                   <span className="text-slate-600 text-[14px] font-normal">
                     {recipe.cookingTime + " minutes"}
@@ -100,6 +101,7 @@ function Recipe() {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   )
 }

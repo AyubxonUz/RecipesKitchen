@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom"
 import Loader from "../components/Loader"
 import {useGlobalContext} from "../hooks/useGlobalContext"
 import {toast} from "react-toastify"
+import Footer from "../components/Footer"
 
 function Create() {
   const [render, setRender] = useState(0)
@@ -96,9 +97,9 @@ function Create() {
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="max-container">
+      <main className="max-container ">
         <div className="mx-auto max-w-xl py-10">
           <h2 className="mb-5 text-center text-2xl font-semibold capitalize">
             Add new recipe
@@ -232,36 +233,33 @@ function Create() {
                   />
                   <div className="flex max-lg:justify-center max-lg:block">
                     <img
-                      className="w-[475px] h-[470px] bg-slate-600 rounded-[12px] max-lg:hidden"
+                      className="w-[475px] h-[470px]  rounded-[12px] max-lg:hidden"
                       src={imagesUrl[0]}
                       alt=""
                     />
                     <div className="block">
-                      <h1 className="text-[50px] sm:ml-6 font-bold max-sm:text-[25px]">
+                      <h1 className="text-black text-[50px] sm:ml-6 font-bold max-sm:text-[25px]">
                         {title.current?.value}
                       </h1>
 
-                      <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px]">
+                      <p className="text-black font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px]">
                         Ingredients:{" "}
                         {ingredientss.map((ing, index, ingArray) => {
                           return (
-                            <span
-                              key={ing}
-                              className="font-sans text-slate-500 "
-                            >
+                            <span key={ing} className="font-normal text-[15px]">
                               {ing}
                               {index === ingArray.length - 1 ? "." : ", "}
                             </span>
                           )
                         })}
                       </p>
-                      <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
+                      <p className="text-black font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
                         Method:
-                        <span className="font-normal text-slate-700 text-sm flex">
+                        <span className="font-normal text-black text-sm flex">
                           {method.current?.value}
                         </span>
                       </p>
-                      <p className="font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
+                      <p className="text-black font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
                         Cooking Time:{" "}
                         <span className="text-slate-600 text-[14px] font-normal">
                           {cookingTime.current?.value + " minutes"}
@@ -280,7 +278,8 @@ function Create() {
           </form>
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   )
 }
 

@@ -1,5 +1,4 @@
 import {FaClock} from "react-icons/fa6"
-import {useDeletedRecipe} from "../hooks/useDeletedRecipe"
 import {Link} from "react-router-dom"
 import {isPassed24Hours} from "../utils/isPassed24Hours"
 
@@ -13,7 +12,7 @@ function RecipesList({recipes}) {
           return (
             <div
               key={recipe.id}
-              className="card flex card-compact bg-base-100 shadow-xl mb-4 max-w-[260px] h-auto max-[480px]:justify-self-center max-[480px]:w-[245px] "
+              className="card flex card-compact bg-white shadow-xl mb-4 max-w-[260px] h-auto max-[480px]:justify-self-center max-[480px]:w-[245px] "
             >
               <img
                 className="w-full h-[200px] rounded-t-[16px] max-[500px]:h-[160px] max-[480px]:h-[190px]"
@@ -21,18 +20,18 @@ function RecipesList({recipes}) {
               />
               <div className="card-body">
                 <div className="flex items-center">
-                  <h2 className="grid-cols-2 card-title">{recipe.title}</h2>
+                  <h2 className="grid-cols-2 card-title text-black">{recipe.title}</h2>
                   {!isPassed24Hours(recipe.createdDate) && (
                     <span className="badge badge-secondary ml-3">!New</span>
                   )}
                 </div>
                 <div className="flex">
-                  <p className="flex items-center gap-1">
+                  <p className="flex items-center gap-1 text-black">
                     <FaClock />
                     {recipe.cookingTime + "minutes"}
                   </p>
                 </div>
-                <p className="line-clamp-3 max-[500px]:line-clamp-2">
+                <p className="text-black line-clamp-3 max-[500px]:line-clamp-2">
                   {recipe.method}
                 </p>
                 <div className="card-actions justify-end p-1">
