@@ -44,9 +44,16 @@ function Navbar() {
             RECIPES
           </NavLink>
         </div>
-        <h1 className="items-center font-medium flex max-[500px]:text-[14px] mr-1">
-          {user.displayName.split(" ")[0]}
-        </h1>
+
+        {user.displayName ? (
+          <h1 className="items-center font-medium flex max-[500px]:text-[14px] mr-1">
+            {user.displayName.split(" ")[0].slice(0, 9)}
+            {user.displayName.split(" ")[0].length > 9 ? "..." : ""}
+          </h1>
+        ) : (
+          <span className="loading loading-dots loading-lg"></span>
+        )}
+
         <div className="flex-none gap-2">
           <div className="dropdown dropdown-end">
             <div

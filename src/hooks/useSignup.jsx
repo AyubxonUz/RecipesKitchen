@@ -7,12 +7,15 @@ import {
 } from "firebase/auth"
 import {GoogleProvider, auth} from "../firebase/firebaseConfig"
 import {toast} from "react-toastify"
+import {useState} from "react"
 
 export function useSignup() {
+  const [loading, setLoading] = useState(false)
+
   const {dispatch} = useGlobalContext()
 
   const signup = (displayName, email, password) => {
-    dispatch({type: "IS_PANDING", payload: true})
+    setLoading(true)
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         await updateProfile(auth.currentUser, {
@@ -21,31 +24,33 @@ export function useSignup() {
         toast.success("Welcome")
         dispatch({type: "LOGIN", payload: userCredential.user})
         dispatch({type: "ERROR", error: null})
-        dispatch({type: "IS_PANDING", payload: false})
+        setLoading(false)
       })
       .catch((error) => {
+        setLoading(true)
         toast.error(error.message)
         dispatch({type: "ERROR", error: error})
-        dispatch({type: "IS_PANDING", payload: false})
+        setLoading(false)
       })
   }
 
   const signUpWithGoogleProvider = () => {
-    dispatch({type: "IS_PANDING", payload: true})
+    setLoading(true)
     signInWithPopup(auth, GoogleProvider)
       .then((result) => {
         GoogleAuthProvider.credentialFromResult(result)
         const user = result.user
         toast.success("Welcome Back")
         dispatch({type: "LOGIN", payload: user})
-        dispatch({type: "IS_PANDING", payload: false})
+        setLoading(false)
       })
       .catch((error) => {
+        setLoading(true)
         const errorMessage = error.message
         toast.error(errorMessage)
-        dispatch({type: "IS_PANDING", payload: false})
+        setLoading(false)
         dispatch({type: "ERROR", payload: errorMessage})
       })
   }
-  return {signUpWithGoogleProvider, signup}
+  return {signUpWithGoogleProvider, signup, loading}
 }

@@ -1,4 +1,4 @@
-import {useRef, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import Navbar from "../components/Navbar"
 import {useAddRecipes} from "../hooks/useAddRecipes"
 import {useNavigate} from "react-router-dom"
@@ -198,7 +198,7 @@ function Create() {
             <p className="font-bold text-[20px]">Method:</p>
             <textarea
               ref={method}
-              required 
+              required
               name="method"
               className="textarea textarea-bordered w-full"
               placeholder="Bio"
@@ -225,7 +225,7 @@ function Create() {
             </div>
             <dialog id="my_modal_4" className="modal">
               <div className="w-11/12 max-w-5xl">
-                <div className="p-5 bg-[#fff] rounded-[14px] shadow-2xl max-container h-auto p-[15px">
+                <div className="p-5 bg-white rounded-[14px] shadow-2xl max-container h-auto p-[15px">
                   <img
                     className="w-[475px] h-[470px] rounded-[12px] max-lg:w-[300px] max-lg:h-64 hidden max-lg:block max-lg:mx-auto max-[1023px]:ml-6 max-[639px]:ml-0"
                     src={imagesUrl[0]}

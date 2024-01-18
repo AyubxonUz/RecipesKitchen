@@ -12,7 +12,7 @@ function RecipesList({recipes}) {
           return (
             <div
               key={recipe.id}
-              className="card flex card-compact bg-slate-400 shadow-xl mb-4 max-w-[260px] h-auto max-[480px]:justify-self-center max-[480px]:w-[245px] "
+              className="card flex card-compact bg-slate-300 shadow-xl mb-4 max-w-[260px] h-auto max-[480px]:justify-self-center max-[480px]:w-[245px] "
             >
               <img
                 className="w-full h-[200px] rounded-t-[16px] max-[500px]:h-[160px] max-[480px]:h-[190px]"
