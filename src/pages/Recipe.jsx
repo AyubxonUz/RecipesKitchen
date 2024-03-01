@@ -29,7 +29,7 @@ function Recipe() {
           </div>
         )}
         {recipe && (
-          <div className="mt-[30px] p-5 bg-slate-400 rounded-[14px] shadow-2xl max-container h-auto p-[15px">
+          <div className="mt-[30px] p-5 rounded-[14px] shadow-2xl max-container h-auto p-[15px">
             <img
               className="w-[475px] h-[470px] rounded-[12px] max-lg:w-[300px] max-lg:h-64 hidden max-lg:block max-lg:mx-auto max-[1023px]:ml-6 max-[639px]:ml-0"
               src={recipe.imagesUrl[0]}
@@ -37,38 +37,33 @@ function Recipe() {
             />
             <div className="flex max-lg:justify-center">
               <img
-                className="w-[475px] h-[470px] bg-slate-600 rounded-[12px] max-lg:hidden"
+                className="w-[475px] h-[470px] rounded-[12px] max-lg:hidden"
                 src={recipe.imagesUrl[0]}
                 alt=""
               />
               <div className="block">
-                <h1 className="text-[50px] text-black sm:ml-6 font-bold max-sm:text-[25px]">
+                <h1 className="text-[50px]  sm:ml-6 font-bold max-sm:text-[25px]">
                   {recipe.title}
                 </h1>
 
-                <p className="font-bold text-black text-[18px] sm:ml-6 mt-6 sm:text-[15px]">
+                <p className="font-bold  text-[18px] sm:ml-6 mt-6 sm:text-[15px]">
                   Ingredients:{" "}
                   {recipe.ingredientss.map((ing, index, ingArray) => {
                     return (
-                      <span
-                        key={ing}
-                        className="font-normal  text-sm text-black"
-                      >
+                      <span key={ing} className="font-normal  text-sm ">
                         {ing}
                         {index === ingArray.length - 1 ? "." : ", "}
                       </span>
                     )
                   })}
                 </p>
-                <p className="text-black font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
+                <p className=" font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
                   Method:{" "}
-                  <span className="font-normal text-slate-700 text-sm">
-                    {recipe.method}
-                  </span>
+                  <span className="font-normal  text-sm">{recipe.method}</span>
                 </p>
-                <p className="text-black font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
+                <p className=" font-bold text-[18px] sm:ml-6 mt-6 sm:text-[15px] max-sm:text-[15px]">
                   Cooking Time:{" "}
-                  <span className="text-slate-600 text-[14px] font-normal">
+                  <span className=" text-[14px] font-normal">
                     {recipe.cookingTime + " minutes"}
                   </span>
                 </p>
