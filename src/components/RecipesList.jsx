@@ -11,9 +11,12 @@ function RecipesList({recipes}) {
           All Recipes:
         </h1>
       ) : (
-        <h1 className="text-[40px] font-medium mb-6 flex justify-center mt-6">
+        <Link
+          to={"/create"}
+          className="text-[40px] hover:underline hover:text-[#3570bd] font-medium mb-6 flex justify-center mt-6"
+        >
           Please create recipes !
-        </h1>
+        </Link>
       )}
 
       <div className="grid grid-cols-4 gap-x-4 max-[1050px]:grid-cols-3 max-[870px]:grid-cols-2 max-[480px]:grid-cols-1">
