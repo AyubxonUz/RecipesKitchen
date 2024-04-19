@@ -3,11 +3,18 @@ import {Link} from "react-router-dom"
 import {isPassed24Hours} from "../utils/isPassed24Hours"
 
 function RecipesList({recipes}) {
+  console.log(recipes.length)
   return (
     <div>
-      <h1 className="text-[40px] mb-6 flex justify-center mt-6">
-        All Recipes:
-      </h1>
+      {recipes.length ? (
+        <h1 className="text-[40px] mb-6 flex font-medium justify-center mt-6">
+          All Recipes:
+        </h1>
+      ) : (
+        <h1 className="text-[40px] font-medium mb-6 flex justify-center mt-6">
+          Please create recipes !
+        </h1>
+      )}
 
       <div className="grid grid-cols-4 gap-x-4 max-[1050px]:grid-cols-3 max-[870px]:grid-cols-2 max-[480px]:grid-cols-1">
         {recipes.map((recipe) => {
